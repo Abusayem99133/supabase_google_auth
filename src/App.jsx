@@ -20,8 +20,20 @@ function App() {
   const signOut = async () => {
     const { error } = await supabase.auth.signOut();
   };
+  const signUp = async () => {
+    await supabase.auth.signInWithOAuth({
+      provider: "google",
+    });
+  };
   if (!session) {
-    return <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />;
+    return (
+      <>
+        {/*     
+    <Auth supabaseClient={supabase} appearance={{ theme: ThemeSupa }} />;
+     */}
+        <button onClick={signUp}> Sign in with Google</button>
+      </>
+    );
   } else {
     return (
       <div>
